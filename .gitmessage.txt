@@ -1,0 +1,13 @@
+# <type>(<scope>): <short summary>
+# │      │
+# │      └─ optional: area of codebase (auth, movies, api, ui)
+# └─ type: feat|fix|docs|style|refactor|test|chore
+#
+# Example:
+# feat(auth): add firebase google login
+# fix(movies): handle pagination edge case
+# docs(readme): update setup instructions
+
+# Body (optional): explain what/why not how
+#
+# Footer (optional): references to issues, breaking changes
