@@ -16,7 +16,7 @@ export default function Home() {
   if (isError) return <div>Error!</div>;
 
   return (
-    <div className="">
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
       {data?.results.map((movie: Movie) => (
         <div key={movie.id} className="movie-card">
           <img src={MOVIE_POSTER_URL + `${movie.poster_path}`} alt={movie.title} />
