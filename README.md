@@ -30,9 +30,12 @@ The following mockups were created as lo-fi designs to guide the frontend implem
 - `docs/mockups/SEARCH.png` - Search Results Page
 - `docs/mockups/DETAIL.png` - Detail Page
 
-Figma link: https://rb.gy/bkb8jv 
+Figma link: `https://rb.gy/bkb8jv` 
 
 Hand Drawn Design: `docs/mockups/hand_drawn_mockups.PNG`
+
+### Pages & Components breakdown
+Link to Scaffolding documentation: `https://tinyurl.com/mr2ase93` 
 
 
 
