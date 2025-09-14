@@ -1,7 +1,10 @@
 "use client";
 
 import { fetchMovies } from "@/services/tmdb";
+import { Movie } from "@/types/movie";
 import { useQuery } from "@tanstack/react-query";
+
+const MOVIE_POSTER_URL = "https://image.tmdb.org/t/p/w500";
 
 export default function Home() {
   const { data, isLoading, isError } = useQuery({
@@ -14,9 +17,9 @@ export default function Home() {
 
   return (
     <div className="">
-      {data.map((movie: any) => (
+      {data?.results.map((movie: Movie) => (
         <div key={movie.id}>
-          <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
+          <img src={MOVIE_POSTER_URL + `${movie.poster_path}`} alt={movie.title} />
           <div>
             <h3>{movie.title}</h3>
             <span></span>
