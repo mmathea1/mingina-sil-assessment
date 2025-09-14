@@ -18,11 +18,11 @@ export default function Home() {
   return (
     <div className="">
       {data?.results.map((movie: Movie) => (
-        <div key={movie.id}>
+        <div key={movie.id} className="movie-card">
           <img src={MOVIE_POSTER_URL + `${movie.poster_path}`} alt={movie.title} />
           <div>
             <h3>{movie.title}</h3>
-            <span></span>
+            <span>{movie.vote_average}</span>
           </div>
           <div>
             <h3>{movie.overview}</h3>
