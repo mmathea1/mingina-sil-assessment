@@ -5,7 +5,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 First, run the development server:
 
 ```bash
-npm run dev
+npm run dev 
 # or
 yarn dev
 # or
@@ -20,17 +20,22 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+## DOCS
+### Mockups / Design References
 
-To learn more about Next.js, take a look at the following resources:
+The following mockups were created as lo-fi designs to guide the frontend implementation:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `docs/mockups/LOGIN.png` - Login Page
+- `docs/mockups/HOME.png` - Home Page
+- `docs/mockups/SEARCH.png` - Search Results Page
+- `docs/mockups/DETAIL.png` - Detail Page
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Figma link: `https://rb.gy/bkb8jv` 
 
-## Deploy on Vercel
+Hand Drawn Design: `docs/mockups/hand_drawn_mockups.PNG`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Pages & Components breakdown
+Link to Scaffolding documentation: `https://tinyurl.com/mr2ase93` 
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
