@@ -32,6 +32,13 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
           {p}
         </button>
       ))}
+      <button
+        onClick={() => onPageChange(currentPage + 1)}
+        disabled={currentPage === totalPages}
+        className="px-3 py-1 rounded bg-gray-200 disabled:opacity-50"
+      >
+        Next
+      </button>
     </aside>
   );
 }
