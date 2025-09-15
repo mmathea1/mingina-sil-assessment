@@ -14,7 +14,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
   const pages = Array.from({ length: end - start + 1 }, (_, i) => start + i);
 
   return (
-    <aside>
+    <aside className="fixed right-4 top-1/2 -translate-y-1/2 flex flex-col items-center space-y-2">
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
