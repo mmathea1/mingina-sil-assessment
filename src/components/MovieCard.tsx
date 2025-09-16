@@ -9,12 +9,12 @@ type MovieCardProps = {
 };
 
 export default function MovieCard({ movie }: MovieCardProps) {
-  const ratingColor =
-    movie.vote_average >= 7
-      ? "text-green-500"
-      : movie.vote_average >= 5
-        ? "text-yellow-500"
-        : "text-red-500";
+  const getRatingColor = (vote: number) => {
+    if (vote >= 7) return "text-green-400 bg-primary px-2 py-1 rounded font-bold";
+    if (vote >= 5) return "text-orange-400 bg-primary px-2 py-1 rounded font-bold";
+    return "text-red-400 bg-primary px-2 py-1 rounded font-bold";
+  };
+
   return (
     <div className="movie-card card shadow-lg relative">
       {movie.poster_path ? (
@@ -28,9 +28,9 @@ export default function MovieCard({ movie }: MovieCardProps) {
           <span className="text-gray-500">No Image</span>
         </div>
       )}
-      <div className=" movie-info">
+      <div className=" movie-info flex justify-between items-center px-4 py2 text-white">
         <h3 className="font-bold text-gray-700 mb-2">{movie.title}</h3>
-        <span className={ratingColor}>{movie.vote_average.toFixed(1)}</span>
+        <span className={getRatingColor(movie.vote_average)}>{movie.vote_average.toFixed(1)}</span>
       </div>
 
       <div className="movie-overview">
