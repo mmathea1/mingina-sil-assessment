@@ -42,4 +42,13 @@ describe("Navbar", () => {
     fireEvent.submit(form!);
     expect(pushMock).toHaveBeenCalledWith("/search?query=Inception");
   });
+
+  it("does not navigate when search is submitted with empty query", async () => {
+    render(<Navbar />);
+    const input = screen.getByPlaceholderText("Search movies...");
+    fireEvent.change(input, { target: { value: "  " } });
+    const form = input.closest("form");
+    fireEvent.submit(form!);
+    expect(pushMock).not.toHaveBeenCalled();
+  });
 });
