@@ -23,4 +23,15 @@ describe("Pagination", () => {
     render(<Pagination currentPage={5} totalPages={5} onPageChange={() => {}} />);
     expect(screen.getByText("Next")).toBeDisabled();
   });
+
+  it("renders page numbers correctly", () => {
+    render(<Pagination currentPage={2} totalPages={5} onPageChange={() => {}} />);
+    expect(screen.getByText("Prev")).toBeInTheDocument();
+    expect(screen.getByText("1")).toBeInTheDocument();
+    expect(screen.getByText("2")).toBeInTheDocument();
+    expect(screen.getByText("3")).toBeInTheDocument();
+    expect(screen.getByText("4")).toBeInTheDocument();
+    expect(screen.getByText("5")).toBeInTheDocument();
+    expect(screen.getByText("Next")).toBeInTheDocument();
+  });
 });
