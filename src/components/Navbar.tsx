@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
@@ -16,7 +17,9 @@ export default function Navbar() {
   return (
     <nav className="navbar shadow-md relative bg-base-100">
       <div className="flex-1">
-        <a className="btn btn-ghost normal-case text-xl">Ming Movies</a>
+        <Link href="/" className="btn btn-ghost normal-case text-xl">
+          Ming Movies
+        </Link>
       </div>
       <div className="flex-none flex items-center gap-4">
         <form className="form-control" onSubmit={handleSearch}>
