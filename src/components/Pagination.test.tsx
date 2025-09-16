@@ -18,4 +18,9 @@ describe("Pagination", () => {
     render(<Pagination currentPage={1} totalPages={5} onPageChange={() => {}} />);
     expect(screen.getByText("Prev")).toBeDisabled();
   });
+
+  it("disables Next button on last page", () => {
+    render(<Pagination currentPage={5} totalPages={5} onPageChange={() => {}} />);
+    expect(screen.getByText("Next")).toBeDisabled();
+  });
 });
