@@ -1,3 +1,4 @@
+import React from "react";
 import { render, screen } from "@testing-library/react";
 import { describe, expect } from "@jest/globals";
 import "@testing-library/jest-dom";
@@ -18,6 +19,4 @@ describe("Pagination", () => {
     render(<Pagination currentPage={1} totalPages={5} onPageChange={() => {}} />);
     expect(screen.getByText("Prev")).toBeDisabled();
   });
-
-  
 });
