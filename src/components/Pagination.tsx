@@ -9,9 +9,30 @@ type PaginationProps = {
 };
 
 export default function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) {
-  const start = Math.max(1, currentPage - 2);
-  const end = Math.min(totalPages, currentPage + 2);
-  const pages = Array.from({ length: end - start + 1 }, (_, i) => start + i);
+  // Generate 5 page numbers on every page load
+
+  const getPageNumbers = () => {
+    const pages: number[] = [];
+    const maxVisible = 5;
+
+    // include current page, two before and two after
+    let startPage = Math.max(1, currentPage - 2);
+    let endPage = startPage + maxVisible - 1;
+
+    // if endPage exceed totalPages
+    if (endPage > totalPages) {
+      endPage = totalPages;
+      startPage = Math.max(1, endPage - maxVisible + 1);
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      pages.push(i);
+    }
+
+    return pages;
+  };
+
+  const pages = getPageNumbers();
 
   return (
     <aside className="fixed right-4 top-1/2 -translate-y-1/2 flex flex-col items-center space-y-2">
