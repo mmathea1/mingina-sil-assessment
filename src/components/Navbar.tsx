@@ -1,17 +1,25 @@
 "use client";
 
-import React from "react";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
 
 export default function Navbar() {
+  const [query, setQuery] = useState("");
+  const router = useRouter();
+
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (query.trim()) {
+      router.push(`/search?query=${encodeURIComponent(query)}`);
+    }
+  };
   return (
     <nav className="navbar shadow-md relative bg-base-100">
       <div className="flex-1">
-        <a href="" className="btn btn-ghost text-xl">
-          Ming Movies
-        </a>
+        <a className="btn btn-ghost normal-case text-xl">Ming Movies</a>
       </div>
       <div className="flex-none flex items-center gap-4">
-        <div className="form-control">
+        <form className="form-control" onSubmit={handleSearch}>
           <input
             type="text"
             className="input input-bordered w-24 md:w-auto"
@@ -19,8 +27,10 @@ export default function Navbar() {
             id="movie-search-bar"
             placeholder="Search movies..."
             aria-label="Search movies"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
           />
-        </div>
+        </form>
         <ul className="menu menu-horizontal px-1">
           <li className="px-1">Messages</li>
           <li className="px-1">Account</li>
