@@ -13,4 +13,11 @@ describe("Pagination", () => {
     expect(screen.getByText("2")).toBeInTheDocument();
     expect(screen.getByText("3")).toBeInTheDocument();
   });
+
+  it("disables Prev button on first page", () => {
+    render(<Pagination currentPage={1} totalPages={5} onPageChange={() => {}} />);
+    expect(screen.getByText("Prev")).toBeDisabled();
+  });
+
+  
 });
