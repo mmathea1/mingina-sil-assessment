@@ -19,8 +19,7 @@ export default function Home() {
   if (isError) return <div>Error!</div>;
 
   return (
-    <div className="flex">
-      {/* pagination sidebar */}
+    <main className="p-6">
       <div className="flex flex-col items-center space-y-4 fixed right-4 top-1/3">
         <Pagination
           currentPage={currentPage}
@@ -28,11 +27,11 @@ export default function Home() {
           onPageChange={setCurrentPage}
         />
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-col-5 gap-6 justify-center">
         {data?.results.map((movie: Movie) => (
           <MovieCard key={movie.id} movie={movie} />
         ))}
       </div>
-    </div>
+    </main>
   );
 }

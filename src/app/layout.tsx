@@ -18,7 +18,7 @@ export default function RootLayout({
       <body>
         <Providers>
           <Navbar />
-          <main>{children}</main>
+          {children}
         </Providers>
       </body>
     </html>
