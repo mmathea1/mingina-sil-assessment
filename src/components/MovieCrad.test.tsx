@@ -44,4 +44,18 @@ describe("MovieCard", () => {
     const rating = screen.getByText("8.2");
     expect(rating).toHaveClass("text-green-400");
   });
+
+  it("applies orange color class for high rating", () => {
+    const highRatedMovie = { ...mockMovie, vote_average: 5.5 };
+    render(<MovieCard movie={highRatedMovie} />);
+    const rating = screen.getByText("5.5");
+    expect(rating).toHaveClass("text-orange-400");
+  });
+
+  it("applies red color class for high rating", () => {
+    const highRatedMovie = { ...mockMovie, vote_average: 3.5 };
+    render(<MovieCard movie={highRatedMovie} />);
+    const rating = screen.getByText("3.5");
+    expect(rating).toHaveClass("text-red-400");
+  });
 });
