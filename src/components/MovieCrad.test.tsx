@@ -37,4 +37,11 @@ describe("MovieCard", () => {
     const voteAverageElement = screen.getByTestId("vote_average");
     expect(voteAverageElement.textContent).toBe(mockMovie.vote_average.toFixed(1));
   });
+
+  it("applies green color class for high rating", () => {
+    const highRatedMovie = { ...mockMovie, vote_average: 8.2 };
+    render(<MovieCard movie={highRatedMovie} />);
+    const rating = screen.getByText("8.2");
+    expect(rating).toHaveClass("text-green-400");
+  });
 });
