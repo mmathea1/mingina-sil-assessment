@@ -39,7 +39,7 @@ jobs:
 
       steps:
         - name: Checkout code
-          uses: actions/checkout/[@v4](https://github.com/apps/v4)
+          uses: actions/checkout@v4
 
         - name: Install Vercel CLI
           run: npm install -g vercel
