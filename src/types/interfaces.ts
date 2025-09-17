@@ -1,10 +1,11 @@
 export interface Movie {
-  id: number;
+  id: string;
   title: string;
   overview: string;
   poster_path: string | null;
   release_date: string;
   vote_average: number;
+  rating: number | null;
 }
 
 export interface MovieResponse {
