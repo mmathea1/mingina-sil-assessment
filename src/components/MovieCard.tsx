@@ -11,7 +11,7 @@ type MovieCardProps = {
 export default function MovieCard({ movie }: MovieCardProps) {
   const getRatingColor = (vote: number) => {
     if (vote >= 7) return "text-green-400 bg-primary px-2 py-1 rounded font-bold";
-    if (vote >= 5) return "text-orange-400 bg-primary px-2 py-1 rounded font-bold";
+    if (vote >= 5 && vote < 7) return "text-orange-400 bg-primary px-2 py-1 rounded font-bold";
     return "text-red-400 bg-primary px-2 py-1 rounded font-bold";
   };
 
