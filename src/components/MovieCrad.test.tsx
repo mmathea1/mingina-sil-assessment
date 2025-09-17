@@ -18,4 +18,10 @@ describe("MovieCard", () => {
     const titles = screen.getAllByText("Inception");
     expect(titles).toHaveLength(2);
   });
+
+  it("renders movie poster image", () => {
+    render(<MovieCard movie={mockMovie} />);
+    const posterElement = screen.getAllByAltText("Inception") as HTMLImageElement[];
+    expect(posterElement[0].src).toContain(mockMovie.poster_path);
+  });
 });
