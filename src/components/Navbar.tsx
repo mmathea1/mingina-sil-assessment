@@ -15,7 +15,7 @@ export default function Navbar() {
     }
   };
   return (
-    <nav className="navbar shadow-md relative bg-base-100">
+    <nav className="navbar navbar-header shadow-md relative bg-base-100">
       <div className="flex-1">
         <Link href="/" className="btn btn-ghost normal-case text-xl">
           Ming Movies
