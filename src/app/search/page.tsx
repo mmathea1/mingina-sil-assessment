@@ -1,14 +1,28 @@
-"use client";
+import MovieCard from "@/components/MovieCard";
+import { Movie } from "@/types/interfaces";
+import { searchMovies } from "@/utils/api";
 
-import { useSearchParams } from "next/navigation";
+export default async function SearchResultsPage({
+  searchParams,
+}: {
+  searchParams: { query?: string };
+}) {
+  // const searchParams = useSearchParams();
+  const query = searchParams.query || "";
+  const movies = [];
 
-export default function SearchResultsPage() {
-  const searchParams = useSearchParams();
-  const query = searchParams.get("query") || "";
+  if (query) {
+    const data = await searchMovies(query);
+    movies.push(...(data?.results || []));
+  }
+
   return (
-    <div className="p-6">
-      <h1>Search results for: {query} </h1>
-      {/* displaying results will be implemented later */}
-    </div>
+    <main className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-col-5 gap-6 justify-center">
+      {movies.length > 0 ? (
+        movies.map((movie: Movie) => <MovieCard key={movie.id} movie={movie} />)
+      ) : (
+        <p> No Results Found </p>
+      )}
+    </main>
   );
 }
