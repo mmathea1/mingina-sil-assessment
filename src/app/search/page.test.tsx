@@ -3,7 +3,7 @@ jest.mock("@/utils/api", () => ({
 }));
 
 import { Movie } from "@/types/interfaces";
-import { searchMovies } from "@/utils/api";
+import { searchMovies } from "@/services/api";
 import SearchResultsPage from "./page";
 import { render, screen } from "@testing-library/react";
 
