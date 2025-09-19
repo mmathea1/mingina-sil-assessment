@@ -4,8 +4,10 @@
     display: flex;
     justify-content: flex-end;
     background-color: var(--secondary-color);
+}
 
-
+.logo-font {
+  font-family: 'Montserrat', sans-serif;
 }
 
 .movie-card {
