@@ -10,7 +10,7 @@ export default {
         jsc: {
           transform: {
             react: {
-              runtime: "automatic", // 👈 ensures no need for `import React`
+              runtime: "automatic",
             },
           },
         },
@@ -18,4 +18,7 @@ export default {
     ],
   },
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
+  moduleNameMapper: {
+    "^@/(.*)$": "<rootDir>/src/$1",
+  },
 };

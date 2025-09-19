@@ -41,3 +41,11 @@ main {
   flex-wrap: wrap;
   justify-content: center;
 }
+
+
+/* Force DaisyUI input wrapper outline color */
+.input:has(input:focus),
+.input:has(input:focus-visible) {
+  outline: 2px solid #3b82f6 !important; /* Tailwind blue-500 */
+  box-shadow: none !important;           /* kill the dark shadow */
+}
