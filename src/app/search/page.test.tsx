@@ -37,6 +37,6 @@ describe("Search Page", () => {
 
     const ui = await SearchResultsPage({ searchParams: { query: "UnavailableMovie" } });
     render(ui);
-    expect(screen.getByText("No Results Found")).toBeInTheDocument();
+    expect(screen.getByText(/no results found/i)).toBeInTheDocument();
   });
 });
