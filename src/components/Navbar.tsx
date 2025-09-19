@@ -16,13 +16,16 @@ export default function Navbar() {
     }
   };
   return (
-    <nav className="navbar bg-white/90 backdrop-blur-md shadow-md sticky top-0 z-50 navbar-header shadow-md bg-base-100 px-4 md:px-8">
+    <nav className="navbar bg-white/90 backdrop-blur-md shadow-md sticky top-0 z-50 px-4 md:px-8 navbar-header">
       <div className="container mx-auto flex items-center justify-between">
-        <div className="navbar-start flex-1">
+        <div className="flex-1 navbar-start">
           <AppLogo />
         </div>
-        <div className="navbar-center hidden md:flex flex-none flex items-center gap-4">
-          <form className="form-control flex items-center w-full max-w-sm" onSubmit={handleSearch}>
+        <div className="flex-1 flex justify-center navbar-center">
+          <form
+            className="form-control w-full max-w-2xl flex items-center w-full max-w-sm"
+            onSubmit={handleSearch}
+          >
             <label className="input flex items-center gap-2 !rounded-full w-64 md:w-80 hover:bg-blue-100 focus:outline-none focus:ring-0 focus-within:border-blue-200 focus-within:shadow-none transition-colors duration-200 group">
               <Search className="w-5 h-5 opacity-50 group-focus-within:text-blue-500" />
               <input
@@ -38,16 +41,25 @@ export default function Navbar() {
             </label>
           </form>
         </div>
-        <div className="flex items-center gap-2 navbar-end">
+        <div className="flex-1 flex justify-end gap-2 navbar-end">
           <button className="btn btn-ghost md:hidden">☰</button>
           <div className="hidden md:flex gap-2">
-            <button className="btn btn-ghost btn-circle hover:bg-blue-100 group">
+            <button
+              className="btn btn-ghost btn-circle hover:bg-blue-100 group tooltip tooltip-bottom"
+              data-tip="Messages"
+            >
               <Mail className="ww-5 h-5 text-gray-500 group-hover:text-blue-500 transition-colors" />
             </button>
-            <button className="btn btn-ghost btn-circle hover:bg-blue-100 group">
+            <button
+              className="btn btn-ghost btn-circle hover:bg-blue-100 group tooltip tooltip-bottom"
+              data-tip="Profile"
+            >
               <CircleUser className="w-5 h-5 text-gray-500 group-hover:text-blue-500 transition-colors" />
             </button>
-            <button className="btn btn-ghost btn-circle hover:bg-blue-100 group">
+            <button
+              className="btn btn-ghost btn-circle hover:bg-blue-100 group tooltip tooltip-bottom"
+              data-tip="Settings"
+            >
               <Settings className="w-5 h-5 text-gray-500 group-hover:text-blue-500 transition-colors" />
             </button>
           </div>
