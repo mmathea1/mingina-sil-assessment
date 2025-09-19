@@ -31,11 +31,18 @@ export default function MovieDetailModal({ movie, isOpen, onClose }: MovieModalP
 
         {/* Header */}
         <div className="flex flex-col md:flex-row gap-6">
-          <img
-            src={`${MOVIE_POSTER_URL}${movie.poster_path}`}
-            alt={movie.title}
-            className="w-full md:w-1/3 rounded-lg"
-          />
+          {movie.poster_path ? (
+            <img
+              src={`${MOVIE_POSTER_URL}${movie.poster_path}`}
+              alt={movie.title}
+              className="w-full md:w-1/3 rounded-lg"
+            />
+          ) : (
+            <div className="h-100 w-80 flex items-center justify-center bg-gray-200 rounded-lg">
+              <span className="text-gray-500">No Image</span>
+            </div>
+          )}
+
           <div className="flex-1">
             <h3 className="text-2xl font-bold">{movie.title}</h3>
             <p className="text-sm text-gray-600">{movie.release_date}</p>
