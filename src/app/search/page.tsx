@@ -24,7 +24,7 @@ export default async function SearchResultsPage({
       ) : (
         <div className="flex flex-col items-center justify-center mt-10 text-gray-500">
           <FileQuestionMark className="w-24 h-24 text-gray-400 p-2" />
-          <p className="text-lg font-medium"> No Results Found For: &quot; {query} &quot; </p>
+          <p className="text-lg font-medium p2"> No Results Found For: &quot; {query} &quot; </p>
         </div>
       )}
     </main>
