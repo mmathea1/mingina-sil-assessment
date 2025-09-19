@@ -1,8 +1,14 @@
 "use client";
 
+import { Movie } from "@/types/interfaces";
 import { Heart, ThumbsDown, ThumbsUp, X } from "lucide-react";
 
-export default function MovieDetailModal({ movie, isOpen, onClose }: any) {
+export type MovieModalProps = {
+  movie: Movie | null;
+  isOpen: boolean;
+  onClose: () => void;
+};
+export default function MovieDetailModal({ movie, isOpen, onClose }: MovieModalProps) {
   if (!isOpen || !movie) return null;
 
   return (
@@ -29,11 +35,9 @@ export default function MovieDetailModal({ movie, isOpen, onClose }: any) {
             className="w-full md:w-1/3 rounded-lg"
           />
           <div className="flex-1">
-            <h3 className="text-2xl font-bold">Movie Title</h3>
-            <p className="text-sm text-gray-600">Movie Release Date</p>
-            <p className="text-sm text-gray-500 mt-1">
-              {movie.cast?.join(",") || "No cast information available"}
-            </p>
+            <h3 className="text-2xl font-bold">{movie.title}</h3>
+            <p className="text-sm text-gray-600">{movie.release_date}</p>
+            <p className="text-sm text-gray-500 mt-1">{movie.popularity}</p>
           </div>
         </div>
 
@@ -62,7 +66,7 @@ export default function MovieDetailModal({ movie, isOpen, onClose }: any) {
         {/* Overview */}
         <div className="mt-4">
           <h4 className="font-semibold mb-2">Movie Overview</h4>
-          <p className="text-gray-700">Movie Description</p>
+          <p className="text-gray-700">{movie.overview}</p>
         </div>
 
         {/* Extra Action */}
