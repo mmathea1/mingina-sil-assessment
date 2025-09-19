@@ -65,7 +65,7 @@ export default function MovieDetailModal({ movie, isOpen, onClose }: MovieModalP
             <ThumbsDown className="w-4 h-4" />
           </button>
           <button
-            className="btn btn-primary flex items-center gap-2 tooltip tooltip-bottom"
+            className="btn btn-secondary flex items-center gap-2 tooltip tooltip-bottom"
             data-tip="Favorite"
           >
             <Heart className="w-4 h-4" />
@@ -76,11 +76,6 @@ export default function MovieDetailModal({ movie, isOpen, onClose }: MovieModalP
         <div className="mt-4">
           <h4 className="font-semibold mb-2">Movie Overview</h4>
           <p className="text-gray-700">{movie.overview}</p>
-        </div>
-
-        {/* Extra Action */}
-        <div className="mt-6 text-right">
-          <button className="btn btn-secondary">View More</button>
         </div>
       </div>
     </div>
