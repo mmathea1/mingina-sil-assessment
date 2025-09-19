@@ -3,6 +3,8 @@
 import { Movie } from "@/types/interfaces";
 import { Heart, ThumbsDown, ThumbsUp, X } from "lucide-react";
 
+const MOVIE_POSTER_URL = "https://image.tmdb.org/t/p/w500";
+
 export type MovieModalProps = {
   movie: Movie | null;
   isOpen: boolean;
@@ -30,7 +32,7 @@ export default function MovieDetailModal({ movie, isOpen, onClose }: MovieModalP
         {/* Header */}
         <div className="flex flex-col md:flex-row gap-6">
           <img
-            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+            src={`${MOVIE_POSTER_URL}${movie.poster_path}`}
             alt={movie.title}
             className="w-full md:w-1/3 rounded-lg"
           />
