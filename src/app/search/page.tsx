@@ -22,9 +22,12 @@ export default async function SearchResultsPage({
       {movies.length > 0 ? (
         movies.map((movie: Movie) => <MovieCard key={movie.id} movie={movie} />)
       ) : (
-        <div className="flex flex-col items-center justify-center mt-10 text-gray-500">
-          <FileQuestionMark className="w-24 h-24 text-gray-400 p-2" />
-          <p className="text-lg font-medium p4"> No Results Found For: &quot; {query} &quot; </p>
+        <div className="flex flex-col items-center justify-center mt-16 text-gray-500">
+          <FileQuestionMark className="w-24 h-24 text-gray-400 mb-4" />
+          <p className="text-xl font-medium text-gray-600">
+            No results found for:
+            <span className="text-blue-500"> {query}</span>
+          </p>
         </div>
       )}
     </main>
