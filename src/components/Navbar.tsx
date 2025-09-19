@@ -18,7 +18,7 @@ export default function Navbar() {
   return (
     <nav className="navbar bg-white/90 backdrop-blur-md shadow-md sticky top-0 z-50 navbar-header shadow-md bg-base-100 px-4 md:px-8">
       <div className="container mx-auto flex items-center justify-between">
-        <div className="navbar-start">
+        <div className="navbar-start flex-1">
           <AppLogo />
         </div>
         <div className="navbar-center hidden md:flex flex-none flex items-center gap-4">
