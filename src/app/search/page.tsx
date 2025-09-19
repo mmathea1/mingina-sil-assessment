@@ -9,11 +9,11 @@ export default async function SearchResultsPage({
 }) {
   // const searchParams = useSearchParams();
   const query = searchParams.query || "";
-  const movies = [];
+  let movies: Movie[] = [];
 
   if (query) {
     const data = await searchMovies(query);
-    movies.push(...(data?.results || []));
+    movies = data?.results || [];
   }
 
   return (

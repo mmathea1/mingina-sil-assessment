@@ -5,7 +5,7 @@ jest.mock("@/utils/api", () => ({
 import { Movie } from "@/types/interfaces";
 import { searchMovies } from "@/utils/api";
 import SearchResultsPage from "./page";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 
 const mockMovie: Movie = {
   id: "2345356",
@@ -20,9 +20,23 @@ const mockMovie: Movie = {
 describe("Search Page", () => {
   it("renders search results after submitting a search query", async () => {
     (searchMovies as jest.Mock).mockResolvedValue({
-      results: [{ mockMovie }],
+      results: [mockMovie],
     });
 
-    render(<SearchResultsPage searchParams={{ query: "Inception" }} />);
+    const ui = await SearchResultsPage({ searchParams: { query: "Inception" } });
+    render(ui);
+
+    const headings = screen.getAllByRole("heading", { name: /Inception/i });
+    expect(headings[0]).toHaveTextContent("Inception");
+  });
+
+  it("renders no results if no movies are found", async () => {
+    (searchMovies as jest.Mock).mockResolvedValue({
+      results: [],
+    });
+
+    const ui = await SearchResultsPage({ searchParams: { query: "UnavailableMovie" } });
+    render(ui);
+    expect(screen.getByText("No Results Found")).toBeInTheDocument();
   });
 });

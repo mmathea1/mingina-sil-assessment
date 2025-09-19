@@ -29,7 +29,9 @@ export default function MovieCard({ movie }: MovieCardProps) {
         </div>
       )}
       <div className=" movie-info flex justify-between items-center px-4 py2 text-white">
-        <h3 className="font-bold text-gray-700 mb-2">{movie.title}</h3>
+        <h3 className="font-bold text-gray-700 mb-2" data-testid="movie-title">
+          {movie.title}
+        </h3>
         <span className={getRatingColor(movie.vote_average)} data-testid="vote_average">
           {movie.vote_average.toFixed(1)}
         </span>
