@@ -1,14 +1,16 @@
 "use client";
 
 import { Movie } from "@/types/interfaces";
+import Image from "next/image";
 
 const MOVIE_POSTER_URL = "https://image.tmdb.org/t/p/w500";
 
 type MovieCardProps = {
   movie: Movie;
+  onClick?: (movie: Movie) => void;
 };
 
-export default function MovieCard({ movie }: MovieCardProps) {
+export default function MovieCard({ movie, onClick }: MovieCardProps) {
   const getRatingColor = (vote: number) => {
     if (vote >= 7) return "text-green-400 bg-primary px-2 py-1 rounded font-bold";
     if (vote >= 5 && vote < 7) return "text-orange-400 bg-primary px-2 py-1 rounded font-bold";
@@ -16,12 +18,14 @@ export default function MovieCard({ movie }: MovieCardProps) {
   };
 
   return (
-    <div className="movie-card card shadow-lg relative">
+    <div className="movie-card card shadow-lg relative" onClick={() => onClick?.(movie)}>
       {movie.poster_path ? (
-        <img
+        <Image
           src={`${MOVIE_POSTER_URL}${movie.poster_path}`}
           alt={movie.title}
           className="rounded-t w-full"
+          width={300}
+          height={450}
         />
       ) : (
         <div className="h-80 flex items-center justify-center bg-gray-200 rounded-t">
