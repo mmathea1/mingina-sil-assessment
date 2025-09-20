@@ -81,7 +81,7 @@ export default function MovieDetailModal({ movie, isOpen, onClose }: MovieModalP
                   <p className="italic text-gray-600 mt-1">“{data.tagline}”</p>
                 ) : null}
 
-                <div className="mt-2 text-sm text-gray-600 space-y-1">
+                <div className="mt-2 text-md text-gray-600 space-y-1">
                   <p>Release date: {data.release_date || "—"}</p>
                   <p>Runtime: {typeof data.runtime === "number" ? `${data.runtime} min` : "—"}</p>
                   <p>
@@ -107,8 +107,8 @@ export default function MovieDetailModal({ movie, isOpen, onClose }: MovieModalP
                             <Image
                               src={`${CDN_BASE}${LOGO_SIZE}${c.logo_path}`}
                               alt={c.name}
-                              width={60}
-                              height={24}
+                              width={80}
+                              height={40}
                               className="object-contain"
                             />
                           ) : null}
