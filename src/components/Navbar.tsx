@@ -45,19 +45,19 @@ export default function Navbar() {
           <button className="btn btn-ghost md:hidden">☰</button>
           <div className="hidden md:flex gap-2">
             <button
-              className="btn btn-ghost btn-circle hover:bg-blue-100 group tooltip tooltip-bottom"
+              className="btn btn-ghost btn-circle hover:bg-blue-100 group tooltip tooltip-bottom focus:outline-none focus:ring-0 border-0 shadow-none"
               data-tip="Messages"
             >
-              <Mail className="ww-5 h-5 text-gray-500 group-hover:text-blue-500 transition-colors" />
+              <Mail className="w-5 h-5 text-gray-500 group-hover:text-blue-500 transition-colors" />
             </button>
             <button
-              className="btn btn-ghost btn-circle hover:bg-blue-100 group tooltip tooltip-bottom"
+              className="btn btn-ghost btn-circle hover:bg-blue-100 group tooltip tooltip-bottom focus:outline-none focus:ring-0 border-0 shadow-none"
               data-tip="Profile"
             >
               <CircleUser className="w-5 h-5 text-gray-500 group-hover:text-blue-500 transition-colors" />
             </button>
             <button
-              className="btn btn-ghost btn-circle hover:bg-blue-100 group tooltip tooltip-bottom"
+              className="btn btn-ghost btn-circle hover:bg-blue-100 group tooltip tooltip-bottom focus:outline-none focus:ring-0 border-0 shadow-none"
               data-tip="Settings"
             >
               <Settings className="w-5 h-5 text-gray-500 group-hover:text-blue-500 transition-colors" />

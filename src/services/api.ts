@@ -1,4 +1,4 @@
-import { MovieResponse } from "@/types/interfaces";
+import { MovieDetails, MovieResponse } from "@/types/interfaces";
 import axios from "axios";
 
 const API_TOKEN = process.env.NEXT_PUBLIC_TMDB_AUTH_TOKEN;
@@ -39,4 +39,12 @@ export async function fetchMovies(page: number = 1): Promise<MovieResponse> {
     params: { api_key: process.env.NEXT_PUBLIC_TMDB_AUTH_TOKEN },
   });
   return response.data;
+}
+
+export async function fetchMovieDetails(movieId: string): Promise<MovieDetails> {
+  const res = await fetch(
+    BASE_URL + `${movieId}?api_key=${process.env.NEXT_PUBLIC_TMDB_AUTH_TOKEN}&language=en-US`
+  );
+  if (!res.ok) throw new Error("Failed to load movie details");
+  return res.json();
 }

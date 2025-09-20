@@ -37,12 +37,12 @@ export default function HomeWrapper({ initialData }: { initialData: MovieRespons
       <div className="flex flex-col items-center space-y-4 fixed right-4 top-1/3">
         <Pagination
           currentPage={currentPage}
-          totalPages={data?.total_pages ?? 1}
+          totalPages={data.total_pages ?? 1}
           onPageChange={setCurrentPage}
         />
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-col-5 gap-6 justify-center">
-        {data?.results.map((movie: Movie) => (
+        {data.results.map((movie: Movie) => (
           <MovieCard key={movie.id} movie={movie} onClick={handleOpenModal} />
         ))}
       </div>

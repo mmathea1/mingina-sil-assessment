@@ -1,6 +1,7 @@
 "use client";
 
 import { Movie } from "@/types/interfaces";
+import Image from "next/image";
 
 const MOVIE_POSTER_URL = "https://image.tmdb.org/t/p/w500";
 
@@ -19,10 +20,12 @@ export default function MovieCard({ movie, onClick }: MovieCardProps) {
   return (
     <div className="movie-card card shadow-lg relative" onClick={() => onClick?.(movie)}>
       {movie.poster_path ? (
-        <img
+        <Image
           src={`${MOVIE_POSTER_URL}${movie.poster_path}`}
           alt={movie.title}
           className="rounded-t w-full"
+          width={300}
+          height={450}
         />
       ) : (
         <div className="h-80 flex items-center justify-center bg-gray-200 rounded-t">

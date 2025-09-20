@@ -13,7 +13,7 @@ export default async function SearchResultsPage({
 
   if (query) {
     const data = await searchMovies(query);
-    movies = data?.results || [];
+    movies = data.results || [];
   }
 
   return <SearchWrapper movies={movies} query={query} />;
