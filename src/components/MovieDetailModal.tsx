@@ -6,9 +6,8 @@ import { useQuery } from "@tanstack/react-query";
 import { Flame, Heart, Loader, ThumbsDown, ThumbsUp, X } from "lucide-react";
 import Image from "next/image";
 
+const MOVIE_POSTER_URL = "https://image.tmdb.org/t/p/w500";
 const CDN_BASE = "https://image.tmdb.org/t/p";
-const POSTER_SIZE = "/w500";
-const BACKDROP_SIZE = "/w780";
 const LOGO_SIZE = "/w185";
 
 export type MovieModalProps = {
@@ -56,27 +55,12 @@ export default function MovieDetailModal({ movie, isOpen, onClose }: MovieModalP
           <div className="text-center text-red-600">Failed to load details.</div>
         ) : (
           <>
-            {/* Backdrop */}
-            {data.backdrop_path ? (
-              <div className="relative w-full h-48 md:h-56 mb-5 rounded-lg overflow-hidden">
-                <Image
-                  src={`${CDN_BASE}${BACKDROP_SIZE}${data.backdrop_path}`}
-                  alt={`${data.title} backdrop`}
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              </div>
-            ) : (
-              <div className="h-40 w-full bg-gray-100 rounded mb-5" />
-            )}
-
             <div className="flex flex-col md:flex-row gap-8">
               {/* Poster */}
               <div className="flex-shrink-0">
                 {data.poster_path ? (
                   <Image
-                    src={`${CDN_BASE}${POSTER_SIZE}${data.poster_path}`}
+                    src={`${MOVIE_POSTER_URL}${data.poster_path}`}
                     alt={data.title}
                     width={300}
                     height={450}
@@ -113,7 +97,9 @@ export default function MovieDetailModal({ movie, isOpen, onClose }: MovieModalP
                 {/* Production companies */}
                 {data.production_companies?.length ? (
                   <div className="mt-4">
-                    <h4 className="text-sm font-semibold text-gray-800 mb-2">Production</h4>
+                    <h4 className="text-sm font-semibold text-gray-800 mb-2">
+                      Production Companies
+                    </h4>
                     <div className="flex flex-wrap gap-4">
                       {data.production_companies.map((c) => (
                         <div key={c.id} className="flex items-center gap-2">

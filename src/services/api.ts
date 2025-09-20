@@ -3,6 +3,7 @@ import axios from "axios";
 
 const API_TOKEN = process.env.NEXT_PUBLIC_TMDB_AUTH_TOKEN;
 const BASE_URL = "https://api.themoviedb.org/3";
+const MOVIE_DETAIL_URL = "https://api.themoviedb.org/3/movie/";
 const TMDB_URL =
   "https://api.themoviedb.org/3/discover/movie?language=en-US&sort_by=popularity.desc&page=1";
 
@@ -43,8 +44,9 @@ export async function fetchMovies(page: number = 1): Promise<MovieResponse> {
 
 export async function fetchMovieDetails(movieId: string): Promise<MovieDetails> {
   const res = await fetch(
-    BASE_URL + `${movieId}?api_key=${process.env.NEXT_PUBLIC_TMDB_AUTH_TOKEN}&language=en-US`
+    MOVIE_DETAIL_URL + `${movieId}?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}&language=en-US`
   );
   if (!res.ok) throw new Error("Failed to load movie details");
+
   return res.json();
 }
