@@ -31,7 +31,7 @@ export default function ResetPasswordForm({ setMode, onClose }: ResetPasswordFor
     } catch (err: unknown) {
       if (err instanceof FirebaseError) {
         const errorMessage =
-          firebaseErrorMessages[err.code] || "Something went wrong. Please try again.";
+          firebaseErrorMessages(err.code) || "Something went wrong. Please try again.";
         setErrorMsg(errorMessage);
         setErrShowAlertMsg(true);
       } else {

@@ -2,13 +2,17 @@ import { getApp, getApps, initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
-export const firebaseErrorMessages: Record<string, string> = {
-  "auth/invalid-email": "Please enter a valid email address.",
-  "auth/user-disabled": "This account has been disabled. Contact support.",
-  "auth/user-not-found": "No account found with this email.",
-  "auth/wrong-password": "Incorrect password. Please try again.",
-  "auth/too-many-requests": "Too many attempts. Try again later.",
-  "auth/network-request-failed": "Network error. Check your internet connection.",
+export const firebaseErrorMessages = (code: string) => {
+  switch (code) {
+    case "auth/wrong-password":
+      return "Incorrect password.";
+    case "auth/email-already-in-use":
+      return "This email is already registered.";
+    case "auth/user-not-found":
+      return "No account found with this email.";
+    default:
+      return "Something went wrong. Try again.";
+  }
 };
 
 const firebaseConfig = {
