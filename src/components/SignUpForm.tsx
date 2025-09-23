@@ -1,7 +1,7 @@
 import { auth, firebaseErrorMessages } from "@/lib/firebase";
 import { FirebaseError } from "firebase/app";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 import AppLogo from "./AppLogo";
 import { CircleX } from "lucide-react";
 
@@ -13,40 +13,42 @@ export default function SignUpForm({ setMode, onClose }: SignUpFormProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState(" ");
   const [loading, setLoading] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
-
-  useEffect(() => {
-    if (showAlert) {
-      const timer = setTimeout(() => setShowAlert(false), 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [showAlert]);
+  const [errorMsg, setErrorMsg] = useState(" ");
+  const [showErrAlertMsg, setShowErrAlertMsg] = useState(false);
+  const [successMsg, setSuccessMsg] = useState(" ");
+  const [showSuccAlertMsg, setShowSuccAlertMsg] = useState(false);
 
   const submitSignUpForm = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setError("null");
+    setErrorMsg("null");
     setLoading(true);
 
     try {
       if (password !== confirmPassword) {
-        setError("Passwords do not match");
+        setErrorMsg("Passwords do not match");
+        setShowErrAlertMsg(true);
         setLoading(false);
       } else {
         await createUserWithEmailAndPassword(auth, email, password);
+        setSuccessMsg("Sign Up successful! Redirecting...");
+        setShowSuccAlertMsg(true);
         setEmail("");
         setPassword("");
-        setConfirmPassword("");
-        onClose?.();
+        setTimeout(() => {
+          setShowSuccAlertMsg(false);
+          onClose?.();
+        }, 2000);
       }
     } catch (err: unknown) {
       if (err instanceof FirebaseError) {
         const errorMessage =
           firebaseErrorMessages[err.code] || "Something went wrong. Please try again.";
-        setError(errorMessage);
+        setErrorMsg(errorMessage);
+        setShowErrAlertMsg(true);
       } else {
-        setError("An unexpected error occured. Please try again.");
+        setErrorMsg("An unexpected error occured. Please try again.");
+        setShowErrAlertMsg(true);
       }
     } finally {
       setLoading(false);
@@ -56,11 +58,19 @@ export default function SignUpForm({ setMode, onClose }: SignUpFormProps) {
     <div className="flex flex-col items-center gap-4">
       <AppLogo />
       <h3>Create An Account</h3>
-      {showAlert && error && (
+      {showErrAlertMsg && errorMsg && (
         <div className="alert alert-error" role="alert">
           <CircleX className="w-6 h-6 text-white" />
           <span className="text-white text-center justify-center text-sm mt-2 font-medium">
-            {error}
+            {errorMsg}
+          </span>
+        </div>
+      )}
+      {showSuccAlertMsg && successMsg && (
+        <div className="alert alert-success" role="alert">
+          <CircleX className="w-6 h-6 text-white" />
+          <span className="text-white text-center justify-center text-sm mt-2 font-medium">
+            {successMsg}
           </span>
         </div>
       )}

@@ -1,6 +1,6 @@
 import { auth, firebaseErrorMessages } from "@/lib/firebase";
 import { sendPasswordResetEmail } from "firebase/auth";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 import AppLogo from "./AppLogo";
 import { CircleX } from "lucide-react";
 import { FirebaseError } from "firebase/app";
@@ -12,29 +12,31 @@ type ResetPasswordFormProps = {
 
 export default function ResetPasswordForm({ setMode, onClose }: ResetPasswordFormProps) {
   const [email, setEmail] = useState("");
-  const [error, setError] = useState(" ");
-  const [showAlert, setShowAlert] = useState(false);
-
-  useEffect(() => {
-    if (showAlert) {
-      const timer = setTimeout(() => setShowAlert(false), 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [showAlert]);
+  const [errorMsg, setErrorMsg] = useState(" ");
+  const [successMsg, setSuccessMsg] = useState(" ");
+  const [showErrAlertMsg, setErrShowAlertMsg] = useState(false);
+  const [showSuccAlertMsg, setShowSuccAlertMsg] = useState(false);
 
   const submitResetForm = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
       await sendPasswordResetEmail(auth, email);
+      setSuccessMsg("Login successful! Redirecting...");
+      setShowSuccAlertMsg(true);
       setEmail("");
-      onClose?.();
+      setTimeout(() => {
+        setShowSuccAlertMsg(false);
+        onClose?.();
+      }, 2000);
     } catch (err: unknown) {
       if (err instanceof FirebaseError) {
         const errorMessage =
           firebaseErrorMessages[err.code] || "Something went wrong. Please try again.";
-        setError(errorMessage);
+        setErrorMsg(errorMessage);
+        setErrShowAlertMsg(true);
       } else {
-        setError("An unexpected error occured. Please try again.");
+        setErrorMsg("An unexpected error occured. Please try again.");
+        setErrShowAlertMsg(true);
       }
     }
   };
@@ -42,10 +44,18 @@ export default function ResetPasswordForm({ setMode, onClose }: ResetPasswordFor
     <div className="flex flex-col items-center gap-4">
       <AppLogo />
       <h3>Reset Password</h3>
-      {showAlert && error && (
+      {showErrAlertMsg && errorMsg && (
         <div className="alert alert-error text-center justify-center" role="alert">
           <CircleX className="w-6 h-6 text-white" />
-          <span className="text-white text-sm mt-2 font-medium">{error}</span>
+          <span className="text-white text-sm mt-2 font-medium">{errorMsg}</span>
+        </div>
+      )}
+      {showSuccAlertMsg && successMsg && (
+        <div className="alert alert-success" role="alert">
+          <CircleX className="w-6 h-6 text-white" />
+          <span className="text-white text-center justify-center text-sm mt-2 font-medium">
+            {successMsg}
+          </span>
         </div>
       )}
       <form
