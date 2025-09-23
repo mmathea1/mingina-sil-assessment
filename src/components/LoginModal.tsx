@@ -1,7 +1,6 @@
-// import { signIn, signOut, useSession } from "next-auth/react";
-import { signOut, useSession } from "next-auth/react";
 import AppLogo from "./AppLogo";
 import LoginForm from "./LoginForm";
+import { useAuth } from "@/context/AuthContext";
 
 type LoginModalProps = {
   isOpen: boolean;
@@ -9,7 +8,7 @@ type LoginModalProps = {
 };
 
 export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
-  const { data: session } = useSession();
+  const { user, loading } = useAuth();
 
   if (!isOpen) return null;
 
@@ -24,13 +23,11 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
           e.stopPropagation();
         }}
       >
-        {session ? (
+        {!loading && user ? (
           <>
             <AppLogo />
-            <p className="text-center">You&aposre signed in as: {session.user?.name}</p>
-            <button className="btn" onClick={() => signOut()}>
-              Sign Out
-            </button>
+            <p className="text-center">You&aposre signed in as: {user.email}</p>
+            <button className="btn">Sign Out</button>
           </>
         ) : (
           <>

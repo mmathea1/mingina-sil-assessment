@@ -4,11 +4,11 @@ import { CircleUser, Mail, Search, Settings } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import AppLogo from "./AppLogo";
-import { useSession } from "next-auth/react";
 import LoginModal from "./LoginModal";
+import { useAuth } from "@/context/AuthContext";
 
 export default function Navbar() {
-  const { data: session } = useSession();
+  const { user, loading } = useAuth();
   const [query, setQuery] = useState("");
   const [isAuthOpen, setAuthModalOpen] = useState(false);
   const router = useRouter();
@@ -58,7 +58,7 @@ export default function Navbar() {
               </button>
               <button
                 className="btn btn-ghost btn-circle hover:bg-blue-100 group tooltip tooltip-bottom focus:outline-none focus:ring-0 border-0 shadow-none"
-                data-tip={session ? session.user?.name : "Profile"}
+                data-tip={!loading && user ? user.email : "Profile"}
                 onClick={() => setAuthModalOpen(true)}
               >
                 <CircleUser className="w-5 h-5 text-gray-500 group-hover:text-blue-500 transition-colors" />
