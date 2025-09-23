@@ -35,9 +35,9 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
         >
           <X className="w-6 h-6" />
         </button>
-        {mode === "login" && <LoginForm setMode={setMode} />}
-        {mode === "signup" && <SignUpForm setMode={setMode} />}
-        {mode === "reset" && <ResetPasswordForm setMode={setMode} />}
+        {mode === "login" && <LoginForm setMode={setMode} onClose={() => onClose} />}
+        {mode === "signup" && <SignUpForm setMode={setMode} onClose={() => onClose} />}
+        {mode === "reset" && <ResetPasswordForm setMode={setMode} onClose={() => onClose} />}
       </div>
     </div>
   );

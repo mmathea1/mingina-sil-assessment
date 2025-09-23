@@ -9,9 +9,10 @@ import { CircleX } from "lucide-react";
 
 type LoginFormProps = {
   setMode: React.Dispatch<React.SetStateAction<"login" | "signup" | "reset">>;
+  onClose?: () => void;
 };
 
-export default function LoginForm({ setMode }: LoginFormProps) {
+export default function LoginForm({ setMode, onClose }: LoginFormProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(" ");
@@ -29,7 +30,9 @@ export default function LoginForm({ setMode }: LoginFormProps) {
     setShowAlert(false);
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      console.log("logged in successfully");
+      setEmail("");
+      setPassword("");
+      onClose?.();
     } catch (err: unknown) {
       if (err instanceof FirebaseError) {
         const errorMessage =

@@ -1,14 +1,16 @@
 import { auth, firebaseErrorMessages } from "@/lib/firebase";
 import { sendPasswordResetEmail } from "firebase/auth";
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import AppLogo from "./AppLogo";
 import { CircleX } from "lucide-react";
+import { FirebaseError } from "firebase/app";
 
 type ResetPasswordFormProps = {
   setMode: (mode: "login" | "signup" | "reset") => void;
+  onClose?: () => void;
 };
 
-export default function ResetPasswordForm({ setMode }: ResetPasswordFormProps) {
+export default function ResetPasswordForm({ setMode, onClose }: ResetPasswordFormProps) {
   const [email, setEmail] = useState("");
   const [error, setError] = useState(" ");
   const [showAlert, setShowAlert] = useState(false);
@@ -24,7 +26,8 @@ export default function ResetPasswordForm({ setMode }: ResetPasswordFormProps) {
     event.preventDefault();
     try {
       await sendPasswordResetEmail(auth, email);
-      console.log("Password reset email sent");
+      setEmail("");
+      onClose?.();
     } catch (err: unknown) {
       if (err instanceof FirebaseError) {
         const errorMessage =
