@@ -2,7 +2,8 @@
 
 import AppLogo from "./AppLogo";
 import { FormEvent, useState } from "react";
-import axios from "axios";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/lib/firebase";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
@@ -12,11 +13,13 @@ export default function LoginForm() {
   const submitLoginForm = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      const response = await axios.post("/api/auth/login", { email, password });
-      console.log(response);
-    } catch (err) {
-      console.error(err);
-      setError("Invalid Credentials");
+      await signInWithEmailAndPassword(auth, email, password);
+      console.log("logged in successfully");
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        console.error("Login Failed: ", err.message);
+        setError(err.message);
+      }
     }
   };
 
