@@ -1,7 +1,8 @@
 import { auth, firebaseErrorMessages } from "@/lib/firebase";
 import { sendPasswordResetEmail } from "firebase/auth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AppLogo from "./AppLogo";
+import { CircleX } from "lucide-react";
 
 type ResetPasswordFormProps = {
   setMode: (mode: "login" | "signup" | "reset") => void;
@@ -10,6 +11,14 @@ type ResetPasswordFormProps = {
 export default function ResetPasswordForm({ setMode }: ResetPasswordFormProps) {
   const [email, setEmail] = useState("");
   const [error, setError] = useState(" ");
+  const [showAlert, setShowAlert] = useState(false);
+
+  useEffect(() => {
+    if (showAlert) {
+      const timer = setTimeout(() => setShowAlert(false), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [showAlert]);
 
   const submitResetForm = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -30,7 +39,12 @@ export default function ResetPasswordForm({ setMode }: ResetPasswordFormProps) {
     <div className="flex flex-col items-center gap-4">
       <AppLogo />
       <h3>Reset Password</h3>
-      {error && <p className="text-red-500 text-sm mt-2 font-medium">{error}</p>}
+      {showAlert && error && (
+        <div className="alert alert-error text-center justify-center" role="alert">
+          <CircleX className="w-6 h-6 text-white" />
+          <span className="text-white text-sm mt-2 font-medium">{error}</span>
+        </div>
+      )}
       <form
         onSubmit={submitResetForm}
         className="form-control w-full max-w-lg mx-auto p-6 bg-white shadow-md rounded-lg flex flex-col gap-4"

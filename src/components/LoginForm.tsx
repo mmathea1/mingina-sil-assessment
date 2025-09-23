@@ -1,10 +1,11 @@
 "use client";
 
 import AppLogo from "./AppLogo";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, firebaseErrorMessages } from "@/lib/firebase";
 import { FirebaseError } from "firebase/app";
+import { CircleX } from "lucide-react";
 
 type LoginFormProps = {
   setMode: React.Dispatch<React.SetStateAction<"login" | "signup" | "reset">>;
@@ -14,9 +15,18 @@ export default function LoginForm({ setMode }: LoginFormProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(" ");
+  const [showAlert, setShowAlert] = useState(false);
+
+  useEffect(() => {
+    if (showAlert) {
+      const timer = setTimeout(() => setShowAlert(false), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [showAlert]);
 
   const submitLoginForm = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setShowAlert(false);
     try {
       await signInWithEmailAndPassword(auth, email, password);
       console.log("logged in successfully");
@@ -25,8 +35,10 @@ export default function LoginForm({ setMode }: LoginFormProps) {
         const errorMessage =
           firebaseErrorMessages[err.code] || "Something went wrong. Please try again.";
         setError(errorMessage);
+        setShowAlert(true);
       } else {
         setError("An unexpected error occured. Please try again.");
+        setShowAlert(true);
       }
     }
   };
@@ -35,7 +47,14 @@ export default function LoginForm({ setMode }: LoginFormProps) {
     <div className="flex flex-col items-center gap-4">
       <AppLogo />
       <h3>Login</h3>
-      {error && <p className="text-red-500 text-sm mt-2 font-medium">{error}</p>}
+      {showAlert && error && (
+        <div className="alert alert-error" role="alert">
+          <CircleX className="w-6 h-6 text-white" />
+          <span className="text-white text-center justify-center text-sm mt-2 font-medium">
+            {error}
+          </span>
+        </div>
+      )}
       <form
         onSubmit={submitLoginForm}
         className="form-control w-full max-w-lg mx-auto p-6 bg-white shadow-md rounded-lg flex flex-col gap-4"
