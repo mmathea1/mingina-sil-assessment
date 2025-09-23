@@ -4,7 +4,10 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { FormEvent, useState } from "react";
 import AppLogo from "./AppLogo";
 
-export default function SignUpForm() {
+type SignUpFormProps = {
+  setMode: React.Dispatch<React.SetStateAction<"login" | "signup" | "reset">>;
+};
+export default function SignUpForm({ setMode }: SignUpFormProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -39,22 +42,23 @@ export default function SignUpForm() {
   return (
     <div className="flex flex-col items-center gap-4">
       <AppLogo />
+      <h3>Create An Account</h3>
       {error && <p className="text-red-500 text-sm mt-2 font-medium">{error}</p>}
       <form
         onSubmit={submitSignUpForm}
         className="form-control w-full max-w-lg mx-auto p-6 bg-white shadow-md rounded-lg flex flex-col gap-4"
       >
         <div className="mt-4">
-          <label className="block pb-2 text-sm font-medium" htmlFor="email">
+          <label className="block pb-2 text-sm font-medium" htmlFor="signup-email">
             Email
           </label>
           <input
             type="email"
             value={email}
-            name="email"
+            name="signUpEmail"
             className="input input-bordered flex items-center gap-2 rounded-full w-full hover:bg-blue-100 focus:outline-none focus:ring-0 focus-within:border-blue-200 focus-within:shadow-none transition-colors duration-200 group"
             placeholder="Enter Email"
-            id="email"
+            id="signup-email"
             onChange={(e) => {
               setEmail(e.target.value);
             }}
@@ -62,16 +66,16 @@ export default function SignUpForm() {
           />
         </div>
         <div className="mt-4">
-          <label className="block pb-2 text-sm font-medium" htmlFor="password">
+          <label className="block pb-2 text-sm font-medium" htmlFor="signup-password">
             Password
           </label>
           <input
             className="input input-bordered flex items-center gap-2 rounded-full w-full hover:bg-blue-100 focus:outline-none focus:ring-0 focus-within:border-blue-200 focus-within:shadow-none transition-colors duration-200 group"
             type="password"
             value={password}
-            name="password"
+            name="signUpPassword"
             placeholder="Enter Password"
-            id="password"
+            id="signup-password"
             onChange={(e) => {
               setPassword(e.target.value);
             }}
@@ -79,16 +83,16 @@ export default function SignUpForm() {
           />
         </div>
         <div className="mt-4">
-          <label className="block pb-2 text-sm font-medium" htmlFor="password">
+          <label className="block pb-2 text-sm font-medium" htmlFor="confirm-password">
             Confirm Password
           </label>
           <input
             className="input input-bordered flex items-center gap-2 rounded-full w-full hover:bg-blue-100 focus:outline-none focus:ring-0 focus-within:border-blue-200 focus-within:shadow-none transition-colors duration-200 group"
             type="password"
             value={confirmPassword}
-            name="password"
+            name="confirmPassword"
             placeholder="Enter Password"
-            id="password"
+            id="confirm-password"
             onChange={(e) => {
               setConfirmPassword(e.target.value);
             }}
@@ -99,9 +103,12 @@ export default function SignUpForm() {
           <button type="submit" className="btn btn-primary w-full rounded-full" disabled={loading}>
             {loading ? "Creating Account..." : "SIGN UP"}
           </button>
-          <a href="#" className="text-blue-500 text-sm text-center mt-2 hover:underline">
-            Forgot Password?{" "}
-          </a>
+          <button type="button" onClick={() => setMode("reset")}>
+            Reset Password
+          </button>
+          <button type="button" onClick={() => setMode("login")}>
+            Login
+          </button>
         </div>
       </form>
     </div>

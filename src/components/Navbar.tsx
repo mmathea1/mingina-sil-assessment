@@ -4,7 +4,7 @@ import { CircleUser, Mail, Search, Settings } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import AppLogo from "./AppLogo";
-import LoginModal from "./LoginModal";
+import AuthModal from "./AuthModal";
 import { useAuth } from "@/context/AuthContext";
 
 export default function Navbar() {
@@ -73,7 +73,7 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
-      <LoginModal isOpen={isAuthOpen} onClose={() => setAuthModalOpen(false)} />
+      <AuthModal isOpen={isAuthOpen} onClose={() => setAuthModalOpen(false)} />
     </div>
   );
 }
