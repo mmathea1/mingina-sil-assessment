@@ -1,17 +1,18 @@
 "use client";
 
 import { CircleUser, Mail, Search, Settings } from "lucide-react";
-import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
 import AppLogo from "./AppLogo";
 import AuthModal from "./AuthModal";
 import { useAuth } from "@/context/AuthContext";
 
 export default function Navbar() {
   const { user, loading } = useAuth();
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(" ");
   const [isAuthOpen, setAuthModalOpen] = useState(false);
   const router = useRouter();
+  const pathname = usePathname();
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -19,6 +20,12 @@ export default function Navbar() {
       router.push(`/search?query=${encodeURIComponent(query)}`);
     }
   };
+
+  useEffect(() => {
+    if (pathname !== "/search") {
+      setQuery("");
+    }
+  }, [pathname]);
 
   return (
     <div>
@@ -35,7 +42,7 @@ export default function Navbar() {
               <label className="input flex items-center gap-2 !rounded-full w-64 md:w-80 hover:bg-blue-100 focus:outline-none focus:ring-0 focus-within:border-blue-200 focus-within:shadow-none transition-colors duration-200 group">
                 <Search className="w-5 h-5 opacity-50 group-focus-within:text-blue-500" />
                 <input
-                  type="text"
+                  type="search"
                   className="grow focus:outline-none focus:ring-0 focus:shadow-none"
                   name="Movie Search"
                   id="movie-search-bar"
