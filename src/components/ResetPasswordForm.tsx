@@ -1,3 +1,5 @@
+"use client";
+
 import { auth, firebaseErrorMessages } from "@/lib/firebase";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { FormEvent, useState } from "react";

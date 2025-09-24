@@ -1,3 +1,5 @@
+"use client";
+
 import { auth, firebaseErrorMessages } from "@/lib/firebase";
 import { FirebaseError } from "firebase/app";
 import { createUserWithEmailAndPassword } from "firebase/auth";
