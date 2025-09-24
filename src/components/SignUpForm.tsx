@@ -61,7 +61,10 @@ export default function SignUpForm({ setMode, onClose }: SignUpFormProps) {
       <AppLogo />
       <h3>Create An Account</h3>
       {showErrAlertMsg && errorMsg && (
-        <div className="alert alert-error rounded-full" role="alert">
+        <div
+          className="alert alert-error flex items-center gap-2 mt-4 p-4 mb-4 rounded-full"
+          role="alert"
+        >
           <CircleX className="w-6 h-6 text-white" />
           <span className="text-white text-center justify-center text-sm mt-2 font-medium">
             {errorMsg}
@@ -69,7 +72,10 @@ export default function SignUpForm({ setMode, onClose }: SignUpFormProps) {
         </div>
       )}
       {showSuccAlertMsg && successMsg && (
-        <div className="alert alert-success rounded-full" role="alert">
+        <div
+          className="alert alert-success flex items-center gap-2 mt-4 p-4 mb-4 rounded-full"
+          role="alert"
+        >
           <CircleX className="w-6 h-6 text-white" />
           <span className="text-white text-center justify-center text-sm mt-2 font-medium">
             {successMsg}
