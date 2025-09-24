@@ -82,7 +82,7 @@ export default function MovieDetailModal({ movie, isOpen, onClose }: MovieModalP
                 ) : null}
 
                 <div className="mt-2 text-md text-gray-600 space-y-1">
-                  <p>Release date: {data.release_date || "—"}</p>
+                  <p>Released: {new Date(data.release_date).getFullYear() || "—"}</p>
                   <p>Runtime: {typeof data.runtime === "number" ? `${data.runtime} min` : "—"}</p>
                   <p>
                     Rating:{" "}
