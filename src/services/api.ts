@@ -5,7 +5,7 @@ const API_TOKEN = process.env.NEXT_PUBLIC_TMDB_AUTH_TOKEN;
 const BASE_URL = "https://api.themoviedb.org/3";
 const MOVIE_DETAIL_URL = "https://api.themoviedb.org/3/movie/";
 const TMDB_URL =
-  "https://api.themoviedb.org/3/discover/movie?language=en-US&sort_by=popularity.desc&page=1";
+  "https://api.themoviedb.org/3/discover/movie?language=en-US&sort_by=popularity.desc";
 
 if (!API_TOKEN) {
   throw new Error("API token is not defined");
@@ -36,9 +36,13 @@ export async function searchMovies(query: string, page: number = 1) {
 }
 
 export async function fetchMovies(page: number = 1): Promise<MovieResponse> {
-  const response = await api.get(TMDB_URL + `&page=${page}`, {
+  const safePage = Math.min(Math.max(page, 1), 500); // Ensure page is between 1 and 500 to obey TMBD limits
+  const response = await api.get(TMDB_URL + `&page=${safePage}`, {
     params: { api_key: process.env.NEXT_PUBLIC_TMDB_AUTH_TOKEN },
   });
+  if (response.status !== 200) {
+    throw new Error("Failed to fetch movies");
+  }
   return response.data;
 }
 
