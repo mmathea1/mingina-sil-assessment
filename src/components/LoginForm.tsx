@@ -51,7 +51,7 @@ export default function LoginForm({ setMode, onClose }: LoginFormProps) {
       <AppLogo />
       <h3>Login</h3>
       {showErrAlertMsg && errorMsg && (
-        <div className="alert alert-error" role="alert">
+        <div className="alert alert-error !rounded-full" role="alert">
           <CircleX className="w-6 h-6 text-white" />
           <span className="text-white text-center justify-center text-sm mt-2 font-medium">
             {errorMsg}
@@ -59,7 +59,7 @@ export default function LoginForm({ setMode, onClose }: LoginFormProps) {
         </div>
       )}
       {showSuccAlertMsg && successMsg && (
-        <div className="alert alert-success" role="alert">
+        <div className="alert alert-success !rounded-full" role="alert">
           <CircleX className="w-6 h-6 text-white" />
           <span className="text-white text-center justify-center text-sm mt-2 font-medium">
             {successMsg}
@@ -78,7 +78,7 @@ export default function LoginForm({ setMode, onClose }: LoginFormProps) {
             type="email"
             value={email}
             name="loginEmail"
-            className="input input-bordered flex items-center gap-2 rounded-full w-full hover:bg-blue-100 focus:outline-none focus:ring-0 focus-within:border-blue-200 focus-within:shadow-none transition-colors duration-200 group"
+            className="input input-bordered flex items-center gap-2 !rounded-full w-full hover:bg-blue-100 focus:outline-none focus:ring-0 focus-within:border-blue-200 focus-within:shadow-none transition-colors duration-200 group"
             placeholder="Enter Email"
             id="login-email"
             onChange={(e) => {
@@ -92,7 +92,7 @@ export default function LoginForm({ setMode, onClose }: LoginFormProps) {
             Password
           </label>
           <input
-            className="input input-bordered flex items-center gap-2 rounded-full w-full hover:bg-blue-100 focus:outline-none focus:ring-0 focus-within:border-blue-200 focus-within:shadow-none transition-colors duration-200 group"
+            className="input input-bordered flex items-center gap-2 !rounded-full w-full hover:bg-blue-100 focus:outline-none focus:ring-0 focus-within:border-blue-200 focus-within:shadow-none transition-colors duration-200 group"
             type="password"
             value={password}
             name="loginPassword"

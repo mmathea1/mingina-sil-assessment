@@ -45,13 +45,13 @@ export default function ResetPasswordForm({ setMode, onClose }: ResetPasswordFor
       <AppLogo />
       <h3>Reset Password</h3>
       {showErrAlertMsg && errorMsg && (
-        <div className="alert alert-error text-center justify-center" role="alert">
+        <div className="alert alert-error text-center justify-center !rounded-full" role="alert">
           <CircleX className="w-6 h-6 text-white" />
           <span className="text-white text-sm mt-2 font-medium">{errorMsg}</span>
         </div>
       )}
       {showSuccAlertMsg && successMsg && (
-        <div className="alert alert-success" role="alert">
+        <div className="alert alert-success !rounded-full" role="alert">
           <CircleX className="w-6 h-6 text-white" />
           <span className="text-white text-center justify-center text-sm mt-2 font-medium">
             {successMsg}
@@ -70,7 +70,7 @@ export default function ResetPasswordForm({ setMode, onClose }: ResetPasswordFor
             type="email"
             value={email}
             name="resetEmail"
-            className="input input-bordered flex items-center gap-2 rounded-full w-full hover:bg-blue-100 focus:outline-none focus:ring-0 focus-within:border-blue-200 focus-within:shadow-none transition-colors duration-200 group"
+            className="input input-bordered flex items-center gap-2 !rounded-full w-full hover:bg-blue-100 focus:outline-none focus:ring-0 focus-within:border-blue-200 focus-within:shadow-none transition-colors duration-200 group"
             placeholder="Enter Email"
             id="reset-email"
             onChange={(e) => {

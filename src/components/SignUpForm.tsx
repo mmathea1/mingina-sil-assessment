@@ -59,7 +59,7 @@ export default function SignUpForm({ setMode, onClose }: SignUpFormProps) {
       <AppLogo />
       <h3>Create An Account</h3>
       {showErrAlertMsg && errorMsg && (
-        <div className="alert alert-error" role="alert">
+        <div className="alert alert-error rounded-full" role="alert">
           <CircleX className="w-6 h-6 text-white" />
           <span className="text-white text-center justify-center text-sm mt-2 font-medium">
             {errorMsg}
@@ -67,7 +67,7 @@ export default function SignUpForm({ setMode, onClose }: SignUpFormProps) {
         </div>
       )}
       {showSuccAlertMsg && successMsg && (
-        <div className="alert alert-success" role="alert">
+        <div className="alert alert-success rounded-full" role="alert">
           <CircleX className="w-6 h-6 text-white" />
           <span className="text-white text-center justify-center text-sm mt-2 font-medium">
             {successMsg}
@@ -86,7 +86,7 @@ export default function SignUpForm({ setMode, onClose }: SignUpFormProps) {
             type="email"
             value={email}
             name="signUpEmail"
-            className="input input-bordered flex items-center gap-2 rounded-full w-full hover:bg-blue-100 focus:outline-none focus:ring-0 focus-within:border-blue-200 focus-within:shadow-none transition-colors duration-200 group"
+            className="input input-bordered !rounded-full flex items-center gap-2 rounded-full w-full hover:bg-blue-100 focus:outline-none focus:ring-0 focus-within:border-blue-200 focus-within:shadow-none transition-colors duration-200 group"
             placeholder="Enter Email"
             id="signup-email"
             onChange={(e) => {
@@ -100,7 +100,7 @@ export default function SignUpForm({ setMode, onClose }: SignUpFormProps) {
             Password
           </label>
           <input
-            className="input input-bordered flex items-center gap-2 rounded-full w-full hover:bg-blue-100 focus:outline-none focus:ring-0 focus-within:border-blue-200 focus-within:shadow-none transition-colors duration-200 group"
+            className="input input-bordered !rounded-full flex items-center gap-2 rounded-full w-full hover:bg-blue-100 focus:outline-none focus:ring-0 focus-within:border-blue-200 focus-within:shadow-none transition-colors duration-200 group"
             type="password"
             value={password}
             name="signUpPassword"
@@ -112,12 +112,12 @@ export default function SignUpForm({ setMode, onClose }: SignUpFormProps) {
             required
           />
         </div>
-        <div className="mt-4">
+        <div className="mt-4 rounded-full">
           <label className="block pb-2 text-sm font-medium" htmlFor="confirm-password">
             Confirm Password
           </label>
           <input
-            className="input input-bordered flex items-center gap-2 rounded-full w-full hover:bg-blue-100 focus:outline-none focus:ring-0 focus-within:border-blue-200 focus-within:shadow-none transition-colors duration-200 group"
+            className="input input-bordered  flex items-center gap-2 !rounded-full w-full hover:bg-blue-100 focus:outline-none focus:ring-0 focus-within:border-blue-200 focus-within:shadow-none transition-colors duration-200 group"
             type="password"
             value={confirmPassword}
             name="confirmPassword"
