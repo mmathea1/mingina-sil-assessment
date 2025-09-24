@@ -15,7 +15,7 @@ export default defineConfig([
       js,
       prettier,
     },
-    extends: ["js/recommended"],
+    extends: ["js/recommended", "next/core-web-vitals", "next"],
     rules: {
       "prettier/prettier": "error",
     },
