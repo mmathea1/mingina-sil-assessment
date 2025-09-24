@@ -35,11 +35,11 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
   const pages = getPageNumbers();
 
   return (
-    <aside className="fixed right-4 top-1/2 -translate-y-1/2 flex flex-col items-center space-y-2">
+    <aside className="fixed bottom-4 left-1/2 -translate-x-1/2 z-20 bg-white/80 backdrop-blur-sm rounded-full px-6 py-3 flex gap-3 shadow-lg items-center">
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className="px-3 py-1 rounded bg-gray-200 disabled:opacity-50"
+        className="px-3 py-1.5 rounded-full bg-gray-200 hover:bg-gray-300 disabled:opacity-40 transition"
       >
         Prev
       </button>
@@ -48,7 +48,11 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
         <button
           key={p}
           onClick={() => onPageChange(p)}
-          className={`px-3 py-1 rounded ${p === currentPage ? "bg-blue-500 text-white" : "bg-gray-200"}`}
+          className={`px-4 py-2 rounded-full transition ${
+            p === currentPage
+              ? "bg-blue-500 text-white font-bold text-lg scale-105"
+              : "bg-gray-200 hover:bg-gray-300"
+          }`}
         >
           {p}
         </button>
@@ -56,7 +60,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="px-3 py-1 rounded bg-gray-200 disabled:opacity-50"
+        className="px-3 py-1.5 rounded-full bg-gray-200 hover:bg-gray-300 disabled:opacity-40 transition"
       >
         Next
       </button>
