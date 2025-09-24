@@ -47,13 +47,19 @@ export default function ResetPasswordForm({ setMode, onClose }: ResetPasswordFor
       <AppLogo />
       <h3>Reset Password</h3>
       {showErrAlertMsg && errorMsg && (
-        <div className="alert alert-error text-center justify-center !rounded-full" role="alert">
+        <div
+          className="alert alert-error flex items-center gap-2 mt-4 p-4 mb-4 rounded-full"
+          role="alert"
+        >
           <CircleX className="w-6 h-6 text-white" />
           <span className="text-white text-sm mt-2 font-medium">{errorMsg}</span>
         </div>
       )}
       {showSuccAlertMsg && successMsg && (
-        <div className="alert alert-success !rounded-full" role="alert">
+        <div
+          className="alert alert-success flex items-center gap-2 mt-4 p-4 mb-4 rounded-full"
+          role="alert"
+        >
           <CircleX className="w-6 h-6 text-white" />
           <span className="text-white text-center justify-center text-sm mt-2 font-medium">
             {successMsg}
