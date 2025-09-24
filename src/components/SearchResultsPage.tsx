@@ -46,20 +46,14 @@ export default function SearchResultsPage() {
   }, [query, currentPage]);
 
   return (
-    <main className="p-6">
+    <main className="p-6 relative">
       {movies.length > 0 && (
         <h3 className="text-xl font-medium text-gray-600 mb-6 gap-6">
           Showing Results For:
-          <span className="text-blue-500"> &quot; {query} &quot; </span>
+          <span className="text-blue-500"> {query} </span>
         </h3>
       )}
-      <div className="flex flex-col items-center space-y-4 fixed right-4 top-1/3">
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={setCurrentPage}
-        />
-      </div>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-col-5 gap-6 justify-center">
         {movies.length > 0 ? (
           movies.map((movie: Movie) => (
@@ -74,6 +68,13 @@ export default function SearchResultsPage() {
             </p>
           </div>
         )}
+      </div>
+      <div className="sticky bottom-0 flex justify-center py-4 bg-white/70 backdrop-blur-sm">
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={setCurrentPage}
+        />
       </div>
       <MovieDetailModal movie={selectedMovie} isOpen={isModalOpen} onClose={handleCloseModal} />
     </main>
