@@ -50,7 +50,7 @@ export default function SearchResultsPage() {
       {movies.length > 0 && (
         <h3 className="text-xl font-medium text-gray-600 mb-6 gap-6">
           Showing Results For:
-          <span className="text-blue-500"> &quot; {query} &quot; </span>
+          <span className="text-blue-500"> {query} </span>
         </h3>
       )}
 
