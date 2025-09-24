@@ -1,14 +1,20 @@
-"use client";
+import { Movie } from "@/types/interfaces";
+import { searchMovies } from "@/services/api";
+import SearchWrapper from "@/components/SearchWrapper";
 
-import { useSearchParams } from "next/navigation";
+export default async function SearchResultsPage({
+  searchParams,
+}: {
+  searchParams: { query?: string };
+}) {
+  // const searchParams = useSearchParams();
+  const query = searchParams.query || "";
+  let movies: Movie[] = [];
 
-export default function SearchResultsPage() {
-  const searchParams = useSearchParams();
-  const query = searchParams.get("query") || "";
-  return (
-    <div className="p-6">
-      <h1>Search results for: {query} </h1>
-      {/* displaying results will be implemented later */}
-    </div>
-  );
+  if (query) {
+    const data = await searchMovies(query);
+    movies = data.results || [];
+  }
+
+  return <SearchWrapper movies={movies} query={query} />;
 }

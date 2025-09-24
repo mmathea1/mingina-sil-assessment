@@ -9,7 +9,7 @@ const mockMovie: Movie = {
   overview: "A mind bending thriller",
   vote_average: 7.598,
   release_date: "2010-07-16",
-  rating: null,
+  popularity: null,
 };
 
 describe("MovieCard", () => {
