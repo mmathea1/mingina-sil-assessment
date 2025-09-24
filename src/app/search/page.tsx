@@ -1,5 +1,10 @@
 import SearchResultsPage from "@/components/SearchResultsPage";
+import { Suspense } from "react";
 
-export default async function SearchPage({ searchParams }: { searchParams: { query?: string } }) {
-  return <SearchResultsPage searchParams={searchParams} />;
+export default async function SearchPage() {
+  return (
+    <Suspense fallback={<div>Loading search results...</div>}>
+      <SearchResultsPage />
+    </Suspense>
+  );
 }
