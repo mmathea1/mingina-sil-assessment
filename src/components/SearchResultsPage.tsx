@@ -49,7 +49,7 @@ export default function SearchResultsPage() {
     <main className="p-6">
       {movies.length > 0 && (
         <h3 className="text-xl font-medium text-gray-600 mb-6 gap-6">
-          Showing Results For:
+          Showing Results For: 
           <span className="text-blue-500">&quot; {query} &quot; </span>
         </h3>
       )}
