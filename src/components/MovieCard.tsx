@@ -28,7 +28,7 @@ export default function MovieCard({ movie, onClick }: MovieCardProps) {
           height={450}
         />
       ) : (
-        <div className="h-80 flex items-center justify-center bg-gray-200 rounded-t">
+        <div className="rounded-t w-full flex items-center justify-center bg-gray-200 h-100">
           <span className="text-gray-500">No Image</span>
         </div>
       )}

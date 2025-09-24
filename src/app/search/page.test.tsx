@@ -4,7 +4,7 @@ jest.mock("@/utils/api", () => ({
 
 import { Movie } from "@/types/interfaces";
 import { searchMovies } from "@/services/api";
-import SearchResultsPage from "./page";
+import SearchPage from "./page";
 import { render, screen } from "@testing-library/react";
 
 const mockMovie: Movie = {
@@ -23,7 +23,7 @@ describe("Search Page", () => {
       results: [mockMovie],
     });
 
-    const ui = await SearchResultsPage({ searchParams: { query: "Inception" } });
+    const ui = await SearchPage({ searchParams: { query: "Inception" } });
     render(ui);
 
     const headings = screen.getAllByRole("heading", { name: /Inception/i });
@@ -35,7 +35,7 @@ describe("Search Page", () => {
       results: [],
     });
 
-    const ui = await SearchResultsPage({ searchParams: { query: "UnavailableMovie" } });
+    const ui = await SearchPage({ searchParams: { query: "UnavailableMovie" } });
     render(ui);
     expect(screen.getByText(/no results found/i)).toBeInTheDocument();
   });

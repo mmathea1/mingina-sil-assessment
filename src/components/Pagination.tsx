@@ -34,31 +34,40 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
 
   const pages = getPageNumbers();
 
+  const handlePageChange = (page: number) => {
+    const capped = Math.min(Math.max(page, 1), 500); // Cap page between 1 and 500
+    onPageChange(capped);
+  };
+
   return (
-    <aside className="fixed right-4 top-1/2 -translate-y-1/2 flex flex-col items-center space-y-2">
+    <aside className="fixed bottom-4 left-1/2 -translate-x-1/2 z-20 bg-white/80 backdrop-blur-sm rounded-full px-6 py-3 flex gap-3 shadow-lg items-center">
       <button
-        onClick={() => onPageChange(currentPage - 1)}
+        onClick={() => handlePageChange(1)}
         disabled={currentPage === 1}
-        className="px-3 py-1 rounded bg-gray-200 disabled:opacity-50"
+        className="px-3 py-1.5 rounded-full bg-gray-200 hover:bg-gray-300 disabled:opacity-40 transition"
       >
-        Prev
+        First
       </button>
 
       {pages.map((p) => (
         <button
           key={p}
-          onClick={() => onPageChange(p)}
-          className={`px-3 py-1 rounded ${p === currentPage ? "bg-blue-500 text-white" : "bg-gray-200"}`}
+          onClick={() => handlePageChange(p)}
+          className={`px-4 py-2 rounded-full transition ${
+            p === currentPage
+              ? "bg-blue-500 text-white font-bold text-lg scale-105"
+              : "bg-gray-200 hover:bg-gray-300"
+          }`}
         >
           {p}
         </button>
       ))}
       <button
-        onClick={() => onPageChange(currentPage + 1)}
+        onClick={() => handlePageChange(totalPages > 500 ? 500 : totalPages)}
         disabled={currentPage === totalPages}
-        className="px-3 py-1 rounded bg-gray-200 disabled:opacity-50"
+        className="px-3 py-1.5 rounded-full bg-gray-200 hover:bg-gray-300 disabled:opacity-40 transition"
       >
-        Next
+        Last
       </button>
     </aside>
   );
