@@ -33,7 +33,7 @@ export default function MovieCard({ movie, onClick }: MovieCardProps) {
           <span className="text-gray-500">No Image</span>
         </div>
       )}
-      <div className=" movie-info flex justify-between items-center px-4 py2 text-white">
+      <div className="flex justify-between items-center px-6 py-3 flex gap-3 text-white bg-white/80 backdrop-blur-sm">
         <h3 className="font-bold text-gray-700 mb-2" data-testid="movie-title">
           {movie.title}
         </h3>
