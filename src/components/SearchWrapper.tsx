@@ -21,6 +21,9 @@ export default function SearchWrapper({ movies, query }: { movies: Movie[]; quer
   };
   return (
     <main className="p-6">
+      <h3 className="text-xl font-medium text-gray-600 mb-6 gap-6">
+        Showing Results For: &quot; {query} &quot;{" "}
+      </h3>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-col-5 gap-6 justify-center">
         {movies.length > 0 ? (
           movies.map((movie: Movie) => (
